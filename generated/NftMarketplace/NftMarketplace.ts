@@ -88,6 +88,92 @@ export class Transfer__Params {
   }
 }
 
+export class ItemBought extends ethereum.Event {
+  get params(): ItemBought__Params {
+    return new ItemBought__Params(this);
+  }
+}
+
+export class ItemBought__Params {
+  _event: ItemBought;
+
+  constructor(event: ItemBought) {
+    this._event = event;
+  }
+
+  get buyer(): Address {
+    return this._event.parameters[0].value.toAddress();
+  }
+
+  get nftAddress(): Address {
+    return this._event.parameters[1].value.toAddress();
+  }
+
+  get tokenId(): BigInt {
+    return this._event.parameters[2].value.toBigInt();
+  }
+
+  get price(): BigInt {
+    return this._event.parameters[3].value.toBigInt();
+  }
+}
+
+export class ItemCanceled extends ethereum.Event {
+  get params(): ItemCanceled__Params {
+    return new ItemCanceled__Params(this);
+  }
+}
+
+export class ItemCanceled__Params {
+  _event: ItemCanceled;
+
+  constructor(event: ItemCanceled) {
+    this._event = event;
+  }
+
+  get seller(): Address {
+    return this._event.parameters[0].value.toAddress();
+  }
+
+  get nftAddress(): Address {
+    return this._event.parameters[1].value.toAddress();
+  }
+
+  get tokenId(): BigInt {
+    return this._event.parameters[2].value.toBigInt();
+  }
+}
+
+export class ItemListed extends ethereum.Event {
+  get params(): ItemListed__Params {
+    return new ItemListed__Params(this);
+  }
+}
+
+export class ItemListed__Params {
+  _event: ItemListed;
+
+  constructor(event: ItemListed) {
+    this._event = event;
+  }
+
+  get seller(): Address {
+    return this._event.parameters[0].value.toAddress();
+  }
+
+  get nftAddress(): Address {
+    return this._event.parameters[1].value.toAddress();
+  }
+
+  get tokenId(): BigInt {
+    return this._event.parameters[2].value.toBigInt();
+  }
+
+  get price(): BigInt {
+    return this._event.parameters[3].value.toBigInt();
+  }
+}
+
 export class NftMarketplace extends ethereum.SmartContract {
   static bind(address: Address): NftMarketplace {
     return new NftMarketplace("NftMarketplace", address);
